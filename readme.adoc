@@ -1,0 +1,12 @@
+= O tym repozytorium
+
+Zebrane warsztaty ze Szpringa. Poproszę o DOSKONALE opisane i dobrej jakości gałązki. Dodajemy przez PRki, bym mógł zrecenzować. Znaczy, że:
+
+1. Klikacie `fork`
+2. Tam, w Waszej kopii, wrzucacie zmiany jako odpowiednią gałązkę. Lub gałązki. Kim jestem by odmawiać gałązek.
+3. Robicie Prośbę o Reckę, ja robię reckę.
+4. Cykl z 3 się powtarza aż przejdziecie reckę... wtedy dodaję Was tu jako kontrybutora i wrzucacie kod wprost do tego repozytu i robicie recki razem ze mną. :-)
+
+== Adoc?
+
+By poznać nieco AsciiDoctor w którym mają być readme, zerknij tu: https://github.com/LIttleAncientForestKami/pokaz-adoca
