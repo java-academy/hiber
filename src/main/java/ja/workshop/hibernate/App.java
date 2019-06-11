@@ -1,98 +1,88 @@
 package ja.workshop.hibernate;
 
 import ja.workshop.hibernate.connectors.H2Connector;
-import ja.workshop.hibernate.model.*;
+import ja.workshop.hibernate.helper.EntityDrawer;
+import ja.workshop.hibernate.model.Author;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
 /**
- * @author bartosz.kupajski
+ * @author Ola Podorska
  */
 class App {
     public static void main(String[] args) {
-        dodajKordiana();
-        tworzenieWalczącychWątków(1L);
-    }
+        //starts connection and begin transaction
+        Session session = new H2Connector().getSession();
+        Transaction transaction = session.beginTransaction();
+        System.out.println("BEFORE SAVE:");
+        EntityDrawer.showEntities(session);
 
-    private static void tworzenieWalczącychWątków(long id) {
-        Thread wątekPrzegrywający = new Thread(new WątekWalczącyPrzegrywający(id), "WątekPrzegrywający");
-        Thread wątekWygrywający = new Thread(new WątekWalczącyWygrywający(id), "WątekWygrywający");
+        //save three records in database -> create new objects and make them persistent
+        Author author1 = new Author("first name", "first surname");
+        Author author2 = new Author("second name", "second surname");
+        Author author3 = new Author("third name", "third surname");
+        session.save(author1);
+        session.save(author2);
+        session.save(author3);
+        System.out.println("\nAFTER SAVE:");
+        EntityDrawer.showEntities(session);
 
-        wątekPrzegrywający.start();
-        wątekWygrywający.start();
-    }
+        //get two records from database (also could use find() and load() methods)
+        author1 = session.get(Author.class, 1L);
+        author3 = session.get(Author.class, 3L);
+        System.out.println("Get name from Database:"+ author1.getName());
+        System.out.println("Get name from Database:"+ author3.getName());
 
-    private static void dodajKordiana() {
-        Author pisarzJuliusz = new Author("Juliusz", "Słowacki");
-        Book ksiażkaKordian = new Book("Kordian", Set.of(pisarzJuliusz), Genre.CLASSIC);
-        Bookstore ksiegarniaPodGlobusem = new Bookstore("Ksiegarnia Pod Globusem");
-        BookstoreBook summary = new BookstoreBook(ksiegarniaPodGlobusem, ksiażkaKordian, 12);
-        Transaction transaction = null;
+        //evict three objects - Hibernate doesn't see them, because we remove them from its cache
+        //detached state
+        session.evict(author1);
+        session.evict(author2);
+        session.evict(author3);
+        System.out.println("\nAFTER EVICT:");
+        EntityDrawer.showEntities(session);
 
-        try (Session session = new H2Connector().getSession()) {
-            transaction = session.beginTransaction();
+        //change two objects
+        author1.setName("first name change");
+        author3.setName("third name change");
 
-            session.save(ksiażkaKordian);
-            session.save(summary);
+        //refresh session
+        session.flush();
 
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            throw e;
-        }
-    }
+        //check if objects were changed
+        author1 = session.get(Author.class, 1L);
+        author3 = session.get(Author.class, 3L);
+        System.out.println("Name after evict:"+ author1.getName());
+        System.out.println("Name after evict:"+ author3.getName());
 
-    private static class WątekWalczącyPrzegrywający implements Runnable {
+        //merge two objects -> they returned to persistent state
+        session.merge(author1);
+        session.merge(author3);
+        System.out.println("\nAFTER MERGE:");
+        EntityDrawer.showEntities(session);
 
-        Session session1 = new H2Connector().getSession();
-        Transaction tx = null;
-        long personId;
+        //change two objects
+        author1.setName("first name change change");
+        author3.setName("third name change change");
+        session.flush();
+        author1 = session.get(Author.class, 1L);
+        author3 = session.get(Author.class, 3L);
+        System.out.println("name after merge:"+ author1.getName());
+        System.out.println("name after merge:"+ author3.getName());
 
-        WątekWalczącyPrzegrywający(long personId) {
-            this.personId = personId;
-        }
+        //find second author by load() method
+        Author secondAuthor = new Author();
+        session.load(secondAuthor, 2L);
+        System.out.println("to delete: " + secondAuthor);
 
-        @Override
-        public void run() {
-            BookstoreBook summary = session1.get(BookstoreBook.class, personId);
-            if (summary != null) {
-                tx = session1.beginTransaction();
+        //delete object from Hibernate cache and database
+        session.delete(secondAuthor);
+        System.out.println("\nAFTER DELETE");
+        EntityDrawer.showEntities(session);
+        secondAuthor = session.get(Author.class, 2L);
 
-                try {
-                    TimeUnit.SECONDS.sleep(5);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                summary.setPrice(18);
-                session1.update(summary);
-                tx.commit();
-            }
-        }
-    }
-
-    private static class WątekWalczącyWygrywający implements Runnable {
-
-        Session session2 = new H2Connector().getSession();
-        Transaction tx = null;
-        long personId;
-
-        public WątekWalczącyWygrywający(long personId) {
-            this.personId = personId;
-        }
-
-        @Override
-        public void run() {
-            BookstoreBook summary = session2.get(BookstoreBook.class, personId);
-            if (summary != null) {
-                tx = session2.beginTransaction();
-                summary.setPrice(25);
-                session2.update(summary);
-                tx.commit();
-            }
-        }
+        //after deletion
+        System.out.println(secondAuthor);
+        transaction.commit();
+        session.close();
     }
 }
-

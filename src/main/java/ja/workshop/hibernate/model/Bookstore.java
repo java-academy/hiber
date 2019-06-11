@@ -25,9 +25,6 @@ public class Bookstore {
         this.name = name;
     }
 
-    public Bookstore() {
-    }
-
     public Long getId() {
         return id;
     }

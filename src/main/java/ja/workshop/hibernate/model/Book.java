@@ -37,9 +37,6 @@ public class Book {
         this.genre = genre;
     }
 
-    public Book() {
-    }
-
     public Long getId() {
         return id;
     }
