@@ -25,11 +25,14 @@ public class Book {
     )
     private Set<Author> authors = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="book")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private Set<BookstoreBook> bookstoreBooks = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
+
+    public Book() {
+    }
 
     public Book(String title, Set<Author> authors, Genre genre) {
         this.title = title;

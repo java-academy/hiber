@@ -23,6 +23,9 @@ public class Author {
     @ManyToMany(mappedBy = "authors")
     private List<Book> books;
 
+    public Author() {
+    }
+
     public Author(String name, String surname) {
         this.name = name;
         this.surname = surname;
