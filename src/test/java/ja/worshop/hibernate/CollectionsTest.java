@@ -1,9 +1,20 @@
 package ja.worshop.hibernate;
 
+import ja.workshop.hibernate.connectors.H2Connector;
+import ja.workshop.hibernate.connectors.SessionConnector;
 import ja.workshop.hibernate.model.Author;
 import ja.workshop.hibernate.model.Book;
+import ja.workshop.hibernate.model.Genre;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.collection.internal.PersistentSet;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * @author Agnieszka Trzewik
@@ -13,36 +24,42 @@ public class CollectionsTest {
 
     private Book book;
 
-
     @BeforeMethod
-    public void initialize() {
-        //TODO: IImplement these authors and add them as the authors of the book:
-        Author author1;
-        Author author2;
-
-        book = new Book();
-
+    public void initialize(){
+        Author author1 = new Author("Anna", "Kowalska");
+        Author author2 = new Author("Maria", "Nowak");
+        Set<Author> authors = new HashSet<>();
+        authors.add(author1);
+        authors.add(author2);
+        book = new Book("Fikcyjna podróż", authors, Genre.FANTASY);
     }
 
     @Test
-    public void givenJavaHashSet_ThenReturnJavaHashSet() {
-        //TODO Prove that book.getAuthors() is a java.util.HashSet:
+    public void givenJavaHashSet_ThenReturnJavaHashSet(){
 
         //Arrange
 
         //Act
 
         //Assert
+        assertEquals(book.getAuthors().getClass(), HashSet.class);
     }
 
     @Test
-    public void givenJavaHashSet_ThenReturnHibernatePersistentSet() {
-        //TODO Prove that after book persistence book.getAuthors() is an org.hibernate.collection.internal.PersistentSet:
+    public void givenJavaHashSet_ThenReturnHibernatePersistentSet(){
 
         //Arrange
+        SessionConnector sessionConnector = new H2Connector();
+        Session session = sessionConnector.getSession();
+        Transaction transaction = session.beginTransaction();
 
         //Act
+        session.persist(book);
+
+        transaction.rollback();
+        session.close();
 
         //Assert
+        assertEquals(book.getAuthors().getClass(), PersistentSet.class);
     }
 }
