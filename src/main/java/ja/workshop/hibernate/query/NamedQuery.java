@@ -1,24 +1,29 @@
 package ja.workshop.hibernate.query;
 
-import org.hibernate.Session;
 import ja.workshop.hibernate.model.Author;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 /**
- * Documentation:
- * Session : https://docs.jboss.org/hibernate/orm/5.4/javadocs/
- * Tip: createNamedQuery()
  * @author krzysztof.niedzielski
  */
+
+//TODO : zmienic na inny
 public class NamedQuery implements IQuery {
-    @Override
     public <T> List<T> listAll(Session session, Class T ){
-       return null;
+        Query<T> query = session.createNamedQuery("SelectAllAuthors",T);
+        return query.getResultList();
     }
 
     @Override
     public List<Author> listAllAuthorsWithSpecifiedName(Session session, String name) {
-        return null;
+
+        Query<Author> query = session.createNamedQuery("SelectAuthorsWhereName",Author.class);
+        query.setParameter("authorName",name);
+        return query.getResultList();
     }
 }

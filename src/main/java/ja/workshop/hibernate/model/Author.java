@@ -1,5 +1,8 @@
 package ja.workshop.hibernate.model;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,6 +10,10 @@ import java.util.List;
  * @author Bartosz Kupajski
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name="SelectAllAuthors",query="from Author"),
+        @NamedQuery(name="SelectAuthorsWhereName", query = "from Author where name = :authorName")
+})
 public class Author {
 
     @Id
@@ -17,7 +24,7 @@ public class Author {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surnname", nullable = false)
+    @Column(name = "surname", nullable = false)
     private String surname;
 
     @ManyToMany(mappedBy = "authors")

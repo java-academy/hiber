@@ -11,7 +11,7 @@ import java.util.Set;
 public class Bookstore {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
