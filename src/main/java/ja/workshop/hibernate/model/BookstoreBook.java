@@ -1,14 +1,13 @@
 package ja.workshop.hibernate.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * @author Agnieszka Trzewik
  */
 @Entity
 @Table(name = "bookstore_book")
-public class BookstoreBook implements Serializable {
+public class BookstoreBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,16 +25,13 @@ public class BookstoreBook implements Serializable {
     @Column(name = "price", nullable = false)
     private int price;
 
-    @Version
-    private Long version;
+    public BookstoreBook() {
+    }
 
     public BookstoreBook(Bookstore bookstore, Book book, int price) {
         this.bookstore = bookstore;
         this.book = book;
         this.price = price;
-    }
-
-    public BookstoreBook() {
     }
 
     public long getId() {
@@ -68,9 +64,5 @@ public class BookstoreBook implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public Long getVersion() {
-        return version;
     }
 }
