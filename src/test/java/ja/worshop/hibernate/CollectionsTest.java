@@ -16,7 +16,7 @@ public class CollectionsTest {
 
     @BeforeMethod
     public void initialize() {
-        //TODO: IImplement these authors and add them as the authors of the book:
+        //TODO: Implement these authors and add them as the authors of the book:
         Author author1;
         Author author2;
 
