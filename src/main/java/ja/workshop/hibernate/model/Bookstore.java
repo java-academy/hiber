@@ -1,54 +1,33 @@
 package ja.workshop.hibernate.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * @author Agnieszka Trzewik
+ * @author Bartosz Kupajski
  */
 @Entity
 public class Bookstore {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", updatable = false, nullable = false)
-    private String name;
+    @Column(name = "name", nullable = false)
+    private String nameOfBookstore;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="bookstore")
-    private Set<BookstoreBook> bookstoreBooks = new HashSet<BookstoreBook>();
-
-    public Bookstore(String name) {
-        this.name = name;
-    }
-
-    public Bookstore() {
+    public Bookstore(String nameOfBookstore) {
+        this.nameOfBookstore = nameOfBookstore;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getNameOfBookstore() {
+        return nameOfBookstore;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<BookstoreBook> getBookstoreBooks() {
-        return bookstoreBooks;
-    }
-
-    public void setBookstoreBooks(Set<BookstoreBook> bookstoreBooks) {
-        this.bookstoreBooks = bookstoreBooks;
+    public void setNameOfBookstore(String nameOfBookstore) {
+        this.nameOfBookstore = nameOfBookstore;
     }
 }

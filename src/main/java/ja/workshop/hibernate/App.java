@@ -1,98 +1,49 @@
 package ja.workshop.hibernate;
 
+import ja.workshop.hibernate.connectors.Connector;
 import ja.workshop.hibernate.connectors.H2Connector;
-import ja.workshop.hibernate.model.*;
+import ja.workshop.hibernate.model.Author;
+import ja.workshop.hibernate.model.Book;
+import ja.workshop.hibernate.model.Genre;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
- * @author bartosz.kupajski
+ * @author krzysztof.niedzielski
  */
-class App {
-    public static void main(String[] args) {
-        dodajKordiana();
-        tworzenieWalczącychWątków(1L);
+public class App {
+    public static void main(String[] args) throws Exception {
+        connect(new H2Connector());
     }
 
-    private static void tworzenieWalczącychWątków(long id) {
-        Thread wątekPrzegrywający = new Thread(new WątekWalczącyPrzegrywający(id), "WątekPrzegrywający");
-        Thread wątekWygrywający = new Thread(new WątekWalczącyWygrywający(id), "WątekWygrywający");
+    static void connect(Connector connector) throws Exception {
+        try (Session session = connector.getSession()) {
+            Transaction transaction = session.beginTransaction();
 
-        wątekPrzegrywający.start();
-        wątekWygrywający.start();
-    }
+            Author brzechwa = new Author("Jan", "Brzechwa");
+            Author kupajki = new Author("Bartosz", "Kupajski");
+            Author wrupek = new Author("Wiktor", "Wrupek");
+            Set<Author> authors = new HashSet<>();
+            authors.add(wrupek);
+            authors.add(brzechwa);
+            authors.add(kupajki);
 
-    private static void dodajKordiana() {
-        Author pisarzJuliusz = new Author("Juliusz", "Słowacki");
-        Book ksiażkaKordian = new Book("Kordian", Set.of(pisarzJuliusz), Genre.CLASSIC);
-        Bookstore ksiegarniaPodGlobusem = new Bookstore("Ksiegarnia Pod Globusem");
-        BookstoreBook summary = new BookstoreBook(ksiegarniaPodGlobusem, ksiażkaKordian, 12);
-        Transaction transaction = null;
-
-        try (Session session = new H2Connector().getSession()) {
-            transaction = session.beginTransaction();
-
-            session.save(ksiażkaKordian);
-            session.save(summary);
+            Book book1 = new Book("w pustyni i w puszczy", Collections.singleton(brzechwa), Genre.CLASSIC);
+            Book book2 = new Book("angular in 5 minutes", authors, Genre.CLASSIC);
+            Book book3 = new Book("todo list - html js", Collections.singleton(wrupek), Genre.CLASSIC);
+            session.save(book1);
+            session.save(book2);
+            session.save(book3);
+            session.save(brzechwa);
+            session.save(kupajki);
+            session.save(wrupek);
 
             transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            throw e;
-        }
-    }
 
-    private static class WątekWalczącyPrzegrywający implements Runnable {
-
-        Session session1 = new H2Connector().getSession();
-        Transaction tx = null;
-        long personId;
-
-        WątekWalczącyPrzegrywający(long personId) {
-            this.personId = personId;
-        }
-
-        @Override
-        public void run() {
-            BookstoreBook summary = session1.get(BookstoreBook.class, personId);
-            if (summary != null) {
-                tx = session1.beginTransaction();
-
-                try {
-                    TimeUnit.SECONDS.sleep(5);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                summary.setPrice(18);
-                session1.update(summary);
-                tx.commit();
-            }
-        }
-    }
-
-    private static class WątekWalczącyWygrywający implements Runnable {
-
-        Session session2 = new H2Connector().getSession();
-        Transaction tx = null;
-        long personId;
-
-        public WątekWalczącyWygrywający(long personId) {
-            this.personId = personId;
-        }
-
-        @Override
-        public void run() {
-            BookstoreBook summary = session2.get(BookstoreBook.class, personId);
-            if (summary != null) {
-                tx = session2.beginTransaction();
-                summary.setPrice(25);
-                session2.update(summary);
-                tx.commit();
-            }
         }
     }
 }
-
