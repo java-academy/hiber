@@ -11,7 +11,7 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
@@ -25,9 +25,6 @@ public class Book {
     )
     private Set<Author> authors = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="book")
-    private Set<BookstoreBook> bookstoreBooks = new HashSet<>();
-
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
@@ -35,9 +32,6 @@ public class Book {
         this.title = title;
         this.authors = authors;
         this.genre = genre;
-    }
-
-    public Book() {
     }
 
     public Long getId() {
@@ -70,14 +64,6 @@ public class Book {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
-    }
-
-    public Set<BookstoreBook> getBookstoreBooks() {
-        return bookstoreBooks;
-    }
-
-    public void setBookstoreBooks(Set<BookstoreBook> bookstoreBooks) {
-        this.bookstoreBooks = bookstoreBooks;
     }
 
     @Override
