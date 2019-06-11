@@ -1,9 +1,5 @@
 package ja.workshop.hibernate.connectors;
 
-import ja.workshop.hibernate.model.Author;
-import ja.workshop.hibernate.model.Book;
-import ja.workshop.hibernate.model.Bookstore;
-import ja.workshop.hibernate.model.BookstoreBook;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -41,11 +37,12 @@ public abstract class Connector implements ISession {
         return configuration;
     }
 
+    //TODO: Uncomment after implement classes in model package:
     private void addEntities(Configuration configuration) {
-        configuration.addAnnotatedClass(Book.class);
+        /*configuration.addAnnotatedClass(Book.class);
         configuration.addAnnotatedClass(Author.class);
         configuration.addAnnotatedClass(Bookstore.class);
-        configuration.addAnnotatedClass(BookstoreBook.class);
+        configuration.addAnnotatedClass(BookstoreBook.class);*/
     }
 
     abstract Properties loadConnectorSettings();
