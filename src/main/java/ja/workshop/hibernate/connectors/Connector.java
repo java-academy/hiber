@@ -15,8 +15,8 @@ import java.util.Properties;
 /**
  * @author Kamil Rojek
  */
-public abstract class SessionConnector implements ISession {
-    private SessionFactory sessionFactory;
+public abstract class Connector implements ISession {
+    private static SessionFactory sessionFactory;
 
     @Override
     public Session getSession() {
@@ -30,7 +30,7 @@ public abstract class SessionConnector implements ISession {
         Configuration configuration = createConfiguration();
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
-        return sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        return configuration.buildSessionFactory(serviceRegistry);
     }
 
     private Configuration createConfiguration() {
