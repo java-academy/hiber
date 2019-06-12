@@ -17,7 +17,7 @@ public class Author {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surnname", nullable = false)
+    @Column(name = "surname", nullable = false)
     private String surname;
 
     @ManyToMany(mappedBy = "authors")
