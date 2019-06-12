@@ -16,7 +16,7 @@ public class CollectionsTest {
 
     @BeforeMethod
     public void initialize() {
-        //TODO: IImplement these authors and add them as the authors of the book:
+        //TODO: Implement these authors and add them as the authors of the book:
         Author author1;
         Author author2;
 
@@ -26,7 +26,7 @@ public class CollectionsTest {
 
     @Test
     public void collectionIsOfTypeHashSet() {
-        //TODO Prove that book.getAuthors() is a java.util.HashSet:
+        //TODO: Prove that book.getAuthors() is a java.util.HashSet:
 
         //Arrange
 
@@ -37,7 +37,7 @@ public class CollectionsTest {
 
     @Test
     public void persistingHashSetGivesHibernatePersistentSet() {
-        //TODO Prove that after book persistence book.getAuthors() is an org.hibernate.collection.internal.PersistentSet:
+        //TODO: Prove that after book persistence book.getAuthors() is an org.hibernate.collection.internal.PersistentSet:
 
         //Arrange
 
