@@ -1,4 +1,4 @@
-package ja.workshop.hibernate.model;
+package ja.workshops.hibernate.parts.model;
 
 import javax.persistence.*;
 
@@ -25,8 +25,7 @@ public class BookstoreBook {
     @Column(name = "price", nullable = false)
     private int price;
 
-    public BookstoreBook() {
-    }
+    public BookstoreBook() { }
 
     public BookstoreBook(Bookstore bookstore, Book book, int price) {
         this.bookstore = bookstore;

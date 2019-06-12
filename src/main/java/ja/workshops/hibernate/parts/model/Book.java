@@ -1,4 +1,4 @@
-package ja.workshop.hibernate.model;
+package ja.workshops.hibernate.parts.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -32,8 +32,8 @@ public class Book {
     private Genre genre;
 
     public Book() {
-    }
 
+    }
     public Book(String title, Set<Author> authors, Genre genre) {
         this.title = title;
         this.authors = authors;

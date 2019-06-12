@@ -1,4 +1,4 @@
-package ja.workshop.hibernate.connectors;
+package ja.workshops.hibernate.parts.connectors;
 
 import org.hibernate.cfg.Environment;
 
@@ -16,6 +16,7 @@ public class PostgresConnector extends SessionConnector {
         settings.put(Environment.USER, "{username}");
         settings.put(Environment.PASS, "{password}");
         settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
+        settings.put(Environment.SHOW_SQL, "true");
         settings.put(Environment.HBM2DDL_AUTO, "create-drop");
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
         return settings;

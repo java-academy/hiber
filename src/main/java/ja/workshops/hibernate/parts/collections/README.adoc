@@ -1,4 +1,4 @@
-# Existence of hibernate collections
+# Existence of Hibernate collections
 
 1. Prepare H2 connection (configure Connector).
 2. Go to CollectionsTest class:
@@ -9,4 +9,7 @@
 
 Checkout documentation:
 
-* [docs.jboss](https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/collections.html)
+* Hibernate user guide:
+https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#collections)
+* Hibernate javadocs:
+https://docs.jboss.org/hibernate/orm/5.4/javadocs/

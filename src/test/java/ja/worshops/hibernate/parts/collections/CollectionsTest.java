@@ -1,10 +1,10 @@
-package ja.worshop.hibernate;
+package ja.worshops.hibernate.parts.collections;
 
-import ja.workshop.hibernate.connectors.H2Connector;
-import ja.workshop.hibernate.connectors.SessionConnector;
-import ja.workshop.hibernate.model.Author;
-import ja.workshop.hibernate.model.Book;
-import ja.workshop.hibernate.model.Genre;
+import ja.workshops.hibernate.parts.connectors.H2Connector;
+import ja.workshops.hibernate.parts.connectors.SessionConnector;
+import ja.workshops.hibernate.parts.model.Author;
+import ja.workshops.hibernate.parts.model.Book;
+import ja.workshops.hibernate.parts.model.Genre;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.collection.internal.PersistentSet;
@@ -35,7 +35,7 @@ public class CollectionsTest {
     }
 
     @Test
-    public void givenJavaHashSet_ThenReturnJavaHashSet(){
+    public void collectionIsOfTypeHashSet(){
 
         //Arrange
 
@@ -46,7 +46,7 @@ public class CollectionsTest {
     }
 
     @Test
-    public void givenJavaHashSet_ThenReturnHibernatePersistentSet(){
+    public void persistingHashSetGivesHibernatePersistentSet(){
 
         //Arrange
         SessionConnector sessionConnector = new H2Connector();
