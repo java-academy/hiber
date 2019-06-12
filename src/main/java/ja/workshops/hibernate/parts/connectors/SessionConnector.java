@@ -1,9 +1,9 @@
-package ja.workshop.hibernate.connectors;
+package ja.workshops.hibernate.parts.connectors;
 
-import ja.workshop.hibernate.model.Author;
-import ja.workshop.hibernate.model.Book;
-import ja.workshop.hibernate.model.Bookstore;
-import ja.workshop.hibernate.model.BookstoreBook;
+import ja.workshops.hibernate.parts.model.Author;
+import ja.workshops.hibernate.parts.model.Book;
+import ja.workshops.hibernate.parts.model.Bookstore;
+import ja.workshops.hibernate.parts.model.BookstoreBook;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -13,11 +13,18 @@ import org.hibernate.service.ServiceRegistry;
 import java.util.Properties;
 
 /**
+ * Creates connections between Java and specific database.
+ *
  * @author Kamil Rojek
  */
 public abstract class SessionConnector implements ISession {
-    private static SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
+    /**
+     * Opens session from SessionFactory.
+     *
+     * @return Session object.
+     */
     @Override
     public Session getSession() {
         return this.getSessionFactory().openSession();
@@ -30,7 +37,7 @@ public abstract class SessionConnector implements ISession {
         Configuration configuration = createConfiguration();
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
-        return configuration.buildSessionFactory(serviceRegistry);
+        return sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 
     private Configuration createConfiguration() {
@@ -41,6 +48,11 @@ public abstract class SessionConnector implements ISession {
         return configuration;
     }
 
+    /**
+     * Adds entities to project configuration.
+     *
+     * @param configuration
+     */
     private void addEntities(Configuration configuration) {
         configuration.addAnnotatedClass(Book.class);
         configuration.addAnnotatedClass(Author.class);

@@ -1,4 +1,4 @@
-package ja.workshop.hibernate.model;
+package ja.workshops.hibernate.parts.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -19,10 +19,9 @@ public class Bookstore {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy="bookstore")
-    private Set<BookstoreBook> bookstoreBooks = new HashSet<>();
+    private Set<BookstoreBook> bookstoreBooks = new HashSet<BookstoreBook>();
 
-    public Bookstore() {
-    }
+    public Bookstore() { }
 
     public Bookstore(String name) {
         this.name = name;

@@ -1,4 +1,4 @@
-package ja.workshop.hibernate.model;
+package ja.workshops.hibernate.parts.model;
 
 /**
  * @author Bartosz Kupajski

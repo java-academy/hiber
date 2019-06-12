@@ -1,4 +1,4 @@
-package ja.workshop.hibernate.connectors;
+package ja.workshops.hibernate.parts.connectors;
 
 import org.hibernate.Session;
 
