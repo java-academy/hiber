@@ -16,39 +16,46 @@
         <maven.compiler.encoding>${project.build.sourceEncoding}</maven.compiler.encoding>
         <maven.resources.encoding>${project.build.sourceEncoding}</maven.resources.encoding>
         <version.maven>3.6.0</version.maven>
+        <version.mysql>8.0.13</version.mysql>
+        <version.hibernate>5.4.3.Final</version.hibernate>
+        <version.postgresql>9.1-901-1.jdbc4</version.postgresql>
+        <version.h2database>1.4.190</version.h2database>
+        <version.testng>6.14.3</version.testng>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.13</version>
+            <version>${version.mysql}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.3.Final</version>
+            <version>${version.hibernate}</version>
         </dependency>
 
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
+            <version>${version.postgresql}</version>
         </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.190</version>
-            <!--We use runtime scope because we want use H2 database in functional code-->
+            <version>${version.h2database}</version>
+            <!--We want to use H2 database while the application works, that's why we use runtime scope.
+            It indicates that the dependency is not required for compilation, but is for execution.
+            More information: https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html-->
             <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.14.3</version>
+            <version>${version.testng}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
