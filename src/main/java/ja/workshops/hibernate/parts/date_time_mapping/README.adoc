@@ -17,8 +17,7 @@ Using java.time:
 _At the end check out your result in database._
 ====
 
-NOTE: _Don't forget to configure your Connector_
-
+IMPORTANT: SessionConnector - to run App, you need change imports of entities and set Connectors.
 
 == Documentation
 
