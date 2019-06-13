@@ -1,7 +1,6 @@
 package ja.workshops.hibernate.parts.generators.model;
 
 
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +25,7 @@ public class Book {
     )
     private Set<Author> authors = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="book")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private Set<BookstoreBook> bookstoreBooks = new HashSet<>();
 
     @Enumerated(EnumType.STRING)

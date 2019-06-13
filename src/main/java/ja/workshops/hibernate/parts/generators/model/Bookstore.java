@@ -17,7 +17,7 @@ public class Bookstore {
     @Column(name = "name", updatable = false, nullable = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="bookstore")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookstore")
     private Set<BookstoreBook> bookstoreBooks = new HashSet<BookstoreBook>();
 
     public Bookstore(String name) {

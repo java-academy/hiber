@@ -1,7 +1,6 @@
 package ja.workshops.hibernate.parts.generators.model;
 
 
-
 import javax.persistence.*;
 
 /**
