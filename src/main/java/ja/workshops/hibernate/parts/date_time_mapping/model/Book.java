@@ -1,6 +1,7 @@
 package ja.workshops.hibernate.parts.date_time_mapping.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,17 +32,26 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    //TODO: Implement date of issue:
-
+    @Column(name = "date_of_issue")
+    private LocalDate dateOfIssue;
 
     public Book() {
 
     }
 
-    public Book(String title, Set<Author> authors, Genre genre) {
+    public Book(String title, Set<Author> authors, Genre genre, LocalDate dateOfIssue) {
         this.title = title;
         this.authors = authors;
         this.genre = genre;
+        this.dateOfIssue = dateOfIssue;
+    }
+
+    public LocalDate getDateOfIssue() {
+        return dateOfIssue;
+    }
+
+    public void setDateOfIssue(LocalDate dateOfIssue) {
+        this.dateOfIssue = dateOfIssue;
     }
 
     public Long getId() {
