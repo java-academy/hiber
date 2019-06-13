@@ -1,9 +1,8 @@
 package ja.workshops.hibernate.parts.generators;
 
-
-import ja.workshops.hibernate.parts.generators.connectors.H2Connector;
-import ja.workshops.hibernate.parts.generators.connectors.MysqlConnector;
-import ja.workshops.hibernate.parts.generators.connectors.PostgresConnector;
+import ja.workshops.hibernate.parts.connectors.H2Connector;
+import ja.workshops.hibernate.parts.connectors.MysqlConnector;
+import ja.workshops.hibernate.parts.connectors.PostgresConnector;
 import ja.workshops.hibernate.parts.generators.model.Author;
 import ja.workshops.hibernate.parts.generators.model.Book;
 import ja.workshops.hibernate.parts.generators.model.Genre;
