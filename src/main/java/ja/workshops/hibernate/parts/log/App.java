@@ -16,7 +16,8 @@ import java.util.Set;
  *       2. Add file log4j2.xml with configured:
  *          - appenders to console and file
  *          - loggers: log hibernate, log sql queries, log parameters
- *       * Remember about dependencies!
+ *       * Remember about dependencies
+ *       once you are finished run app and check if logging works as intended
  *
  * @author krzysztof.niedzielski
  */
