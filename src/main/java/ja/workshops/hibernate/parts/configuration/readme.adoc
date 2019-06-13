@@ -1,0 +1,36 @@
+:author: Krzysztof Niedzielski
+:icons: font
+:source-highlighter: pygments
+
+= TASK :
+
+== You should install 3 different databases:
+
+* MySQL
+* PostgreSQL
+* H2 (open in server mode)
+
+== Steps:
+1. Download database server.
+2. Install.
+3. Configure username and password for your user.
+4. Create database and name it db
+5. Change in Connector classes {database}, {password}, {username}
+6. Run main method and check if Author, Book, Bookstore, BookstoreBook tables are created in each DB
+
+== Documentation
+
+=== Checkout documentation:
+
+* link:https://dev.mysql.com/doc/refman/8.0/en/binary-installation.html[MySQL]
+* link:https://www.postgresql.org/docs/11/index.html[PostgreSQL]
+* link:https://www.h2database.com/html/installation.html[H2]
+
+== Tips
+
+=== If you install db for first time (or forgot how to do it):
+
+* link:https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04[MySQL]
+* link:https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04[PostgreSQL]
+* link:https://www.h2database.com/html/installation.html[H2]
+
