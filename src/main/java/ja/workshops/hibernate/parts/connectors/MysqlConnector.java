@@ -5,6 +5,9 @@ import org.hibernate.cfg.Environment;
 import java.util.Properties;
 
 /**
+ * Basic settings to connect with MySql database.
+ * Need to change URL, USER and PASS properties.
+ *
  * @author krzysztof.niedzielski
  */
 public class MysqlConnector extends SessionConnector {

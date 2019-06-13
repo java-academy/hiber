@@ -2,7 +2,7 @@ package ja.workshops.hibernate.parts.connectors;
 
 import ja.workshops.hibernate.parts.crud.CrudHandler;
 import ja.workshops.hibernate.parts.crud.CrudMethods;
-import ja.workshops.hibernate.parts.crud.ICrudMethods;
+import ja.workshops.hibernate.parts.crud.CrudMethodsInterface;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.service.spi.ServiceException;
@@ -15,11 +15,11 @@ import java.util.List;
  * @author Kamil Rojek
  * @author Agnieszka Trzewik
  */
-public class ConnectorManager<T extends ISession> implements AutoCloseable {
+public class ConnectorManager<T extends SessionConnector> implements AutoCloseable {
     private T connector;
     private Transaction transaction;
     private Session session;
-    private ICrudMethods crudMethods;
+    private CrudMethodsInterface crudMethods;
 
     private ConnectorManager(T connector) {
         this.connector = connector;
@@ -32,7 +32,7 @@ public class ConnectorManager<T extends ISession> implements AutoCloseable {
      * @param <T>       - type of connector
      * @return - initialized ConnectorManager class
      */
-    public static <T extends ISession> ConnectorManager<T> connect(T connector) {
+    public static <T extends SessionConnector> ConnectorManager<T> connect(T connector) {
         return new ConnectorManager<>(connector);
     }
 
@@ -43,7 +43,7 @@ public class ConnectorManager<T extends ISession> implements AutoCloseable {
      * @param crudMethods - crud methods implementation
      * @return - CrudHandler
      */
-    public CrudHandler openCrudSession(ICrudMethods crudMethods) {
+    public CrudHandler openCrudSession(CrudMethodsInterface crudMethods) {
         this.crudMethods = crudMethods;
         return CrudHandler.initializeCrudHandler(crudMethods, this);
     }

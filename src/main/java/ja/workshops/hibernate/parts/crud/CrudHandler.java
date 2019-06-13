@@ -21,12 +21,12 @@ import java.util.List;
  * @author Kamil Rojek
  */
 public class CrudHandler {
-    private ICrudMethods crudMethods;
+    private CrudMethodsInterface crudMethods;
     private ConnectorManager<?> connectorManager;
     private List<Object> recordsToAdd;
     private List<Object> recordsToUpdate;
 
-    private CrudHandler(ICrudMethods crudMethods, ConnectorManager<?> connectorManager) {
+    private CrudHandler(CrudMethodsInterface crudMethods, ConnectorManager<?> connectorManager) {
         this.crudMethods = crudMethods;
         this.connectorManager = connectorManager;
 
@@ -41,7 +41,7 @@ public class CrudHandler {
      * @param connectorManager - manager of connection between java and database
      * @return CrudHandler
      */
-    public static CrudHandler initializeCrudHandler(ICrudMethods crudMethods, ConnectorManager<?> connectorManager) {
+    public static CrudHandler initializeCrudHandler(CrudMethodsInterface crudMethods, ConnectorManager<?> connectorManager) {
         return new CrudHandler(crudMethods, connectorManager);
     }
 
@@ -103,13 +103,13 @@ public class CrudHandler {
      * @param <T>   - type of identity
      * @return - record as an object
      */
-    public <T extends Serializable> Object readRecord(Class<?> clazz, T id) {
+    public <T extends Serializable> Object readRecord(Class<?> clazz, T id) throws UnableReadRecordException {
         try (Session session = connectorManager.getSession()) {
             crudMethods.initializeSession(session);
             return crudMethods.read(clazz, id);
         } catch (SessionInitializationException e) {
-            e.printStackTrace();
-            return null;
+            System.out.println("Session initialization failed!");
+            throw new UnableReadRecordException("Read record failed");
         }
     }
 
@@ -125,7 +125,7 @@ public class CrudHandler {
             crudMethods.delete(record);
             connectorManager.commitAndClose();
         } catch (SessionInitializationException e) {
-            e.printStackTrace();
+            System.out.println("Session initialization failed!");
         }
     }
 
@@ -136,7 +136,7 @@ public class CrudHandler {
         try {
             connectorManager.commitAndClose(recordsToAdd, recordsToUpdate);
         } catch (SessionInitializationException e) {
-            e.printStackTrace();
+            System.out.println("Session initialization failed!");
         }
     }
 }

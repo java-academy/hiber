@@ -6,15 +6,15 @@ import org.hibernate.Session;
 import java.io.Serializable;
 
 /**
- * Represents basic crud methods.
+ * Represents basic CRUD methods.
  *
  * @author Kamil Rojek
  */
-public class CrudMethods implements ICrudMethods {
+public class CrudMethods implements CrudMethodsInterface {
     private Session session;
 
     /**
-     * Initializes session by passing argument.
+     * Initializes hibernate session by passing argument.
      *
      * @param session
      */
@@ -24,7 +24,8 @@ public class CrudMethods implements ICrudMethods {
     }
 
     /**
-     * Creates new record in database.
+     * Creates new record in database
+     * using session.persist method.
      *
      * @param record - record to create
      * @param <R> - type of record
@@ -39,7 +40,8 @@ public class CrudMethods implements ICrudMethods {
     }
 
     /**
-     * Reads object from database.
+     * Reads object from database
+     * using session.persist method.
      *
      * @param clazz - class that is mapped on record we want to read
      * @param id - index of record
@@ -52,7 +54,8 @@ public class CrudMethods implements ICrudMethods {
     }
 
     /**
-     * Updates specific record in database.
+     * Updates specific record in database
+     * using session.saveOrUpdate method.
      *
      * @param record - record to update
      * @param <R> - type of record
@@ -67,7 +70,8 @@ public class CrudMethods implements ICrudMethods {
     }
 
     /**
-     * Deletes specific record from database.
+     * Deletes specific record from database
+     * using session.delete method.
      *
      * @param record - record to delete
      * @param <R> - type of record

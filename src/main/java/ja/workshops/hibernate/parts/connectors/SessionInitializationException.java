@@ -1,10 +1,12 @@
 package ja.workshops.hibernate.parts.connectors;
 
 /**
+ * Exception thrown when Session can't be initialized.
+ *
  * @author Kamil Rojek
  */
 public class SessionInitializationException extends Exception {
-    public SessionInitializationException(String message) {
+    SessionInitializationException(String message) {
         super(message);
     }
 }

@@ -17,7 +17,7 @@ import java.util.Properties;
  *
  * @author Kamil Rojek
  */
-public abstract class SessionConnector implements ISession {
+public abstract class SessionConnector {
     private SessionFactory sessionFactory;
 
     /**
@@ -25,7 +25,6 @@ public abstract class SessionConnector implements ISession {
      *
      * @return Session object.
      */
-    @Override
     public Session getSession() {
         return this.getSessionFactory().openSession();
     }
