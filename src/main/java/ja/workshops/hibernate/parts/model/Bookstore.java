@@ -50,4 +50,12 @@ public class Bookstore {
     public void setBookstoreBooks(Set<BookstoreBook> bookstoreBooks) {
         this.bookstoreBooks = bookstoreBooks;
     }
+
+    @Override
+    public String toString() {
+        return "Bookstore{" +
+                "name='" + name + '\'' +
+                ", bookstoreBooks=" + bookstoreBooks +
+                '}';
+    }
 }
