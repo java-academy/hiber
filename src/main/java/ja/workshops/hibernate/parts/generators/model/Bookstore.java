@@ -1,4 +1,4 @@
-package ja.workshops.hibernate.parts.model;
+package ja.workshops.hibernate.parts.generators.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,17 +11,14 @@ import java.util.Set;
 public class Bookstore {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id", updatable = false, nullable = false)
-    private long id;
+    private Long id;
 
     @Column(name = "name", updatable = false, nullable = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="bookstore")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "bookstore")
     private Set<BookstoreBook> bookstoreBooks = new HashSet<BookstoreBook>();
-
-    public Bookstore() { }
 
     public Bookstore(String name) {
         this.name = name;
@@ -49,13 +46,5 @@ public class Bookstore {
 
     public void setBookstoreBooks(Set<BookstoreBook> bookstoreBooks) {
         this.bookstoreBooks = bookstoreBooks;
-    }
-
-    @Override
-    public String toString() {
-        return "Bookstore{" +
-                "name='" + name + '\'' +
-                ", bookstoreBooks=" + bookstoreBooks +
-                '}';
     }
 }

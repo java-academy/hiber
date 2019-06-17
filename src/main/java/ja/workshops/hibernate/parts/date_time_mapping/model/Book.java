@@ -1,4 +1,4 @@
-package ja.workshops.hibernate.parts.model;
+package ja.workshops.hibernate.parts.date_time_mapping.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,29 +11,33 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private long id;
+    private Long id;
 
     @Column(name = "title", updatable = false, nullable = false)
     private String title;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id")}
     )
     private Set<Author> authors = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="book")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
     private Set<BookstoreBook> bookstoreBooks = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    //TODO: Implement date of issue:
+
+
     public Book() {
 
     }
+
     public Book(String title, Set<Author> authors, Genre genre) {
         this.title = title;
         this.authors = authors;

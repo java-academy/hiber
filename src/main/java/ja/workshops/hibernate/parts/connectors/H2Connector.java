@@ -11,16 +11,27 @@ import java.util.Properties;
  * @author krzysztof.niedzielski
  */
 public class H2Connector extends SessionConnector {
+
+    private String ddlAuto;
+
+    public H2Connector(String ddlAuto) {
+        this.ddlAuto = ddlAuto;
+    }
+
+    public H2Connector() {
+        ddlAuto="create-drop";
+    }
+
     @Override
     Properties loadConnectorSettings() {
         Properties settings = new Properties();
         settings.put(Environment.DRIVER, "org.h2.Driver");
-        settings.put(Environment.URL, "jdbc:h2:tcp://localhost/~/test");
-        settings.put(Environment.USER, "sa");
-        settings.put(Environment.PASS, "");
+        settings.put(Environment.URL, "jdbc:h2:tcp://localhost/~/{database}");
+        settings.put(Environment.USER, "{username}");
+        settings.put(Environment.PASS, "{password}");
         settings.put(Environment.DIALECT, "org.hibernate.dialect.H2Dialect");
         settings.put(Environment.SHOW_SQL, "true");
-        settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+        settings.put(Environment.HBM2DDL_AUTO, ddlAuto);
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
         return settings;
     }
