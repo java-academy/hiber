@@ -1,7 +1,9 @@
 package ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.entity_manager;
 
 /**
- * @author krzysztof.niedzielski
+ * Connector to PostgreSQL database.
+ *
+ * @author Krzysztof Kramarz
  */
 public class PostgreSQLConnector extends EntityManagerConnector {
 

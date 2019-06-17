@@ -2,8 +2,8 @@ package ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.e
 
 
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.ConnectorManager;
+import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.EntityPersistanceException;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionCloseException;
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionInitializationException;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -20,25 +20,32 @@ public class EntityManagerConnectorManager<T extends IEntityManagerConnector> ex
     private final EntityTransaction transaction;
 
     private EntityManagerConnectorManager(T connector) {
-        super.connector = connector;
+        super(connector);
         records = new ArrayList<>();
-        entityManager = connector.getEntityManager();
+        entityManager = connector.createEntityManager();
         transaction = entityManager.getTransaction();
     }
 
-    public static <T extends IEntityManagerConnector> ConnectorManager<T> of(T connector) {
+    /**
+     * Static factory. Use this to create instance of this class.
+     *
+     * @param connector {@link IEntityManagerConnector}
+     * @param <T>       extends {@link IEntityManagerConnector}
+     * @return {@link EntityManagerConnectorManager}
+     */
+    public static <T extends IEntityManagerConnector> EntityManagerConnectorManager<T> of(T connector) {
         return new EntityManagerConnectorManager<>(connector);
     }
 
     @Override
-    public void commitAndClose() throws SessionInitializationException, SessionCloseException {
+    public void commitAndClose() throws EntityPersistanceException, SessionCloseException {
         transaction.begin();
 
         for (Object r : records) {
             try {
                 entityManager.persist(r);
             } catch (EntityExistsException | IllegalArgumentException | TransactionRequiredException e) {
-                throw new SessionInitializationException(" Adding record failed -> " + r);
+                throw new EntityPersistanceException(" Adding record failed -> " + r);
             }
         }
 
@@ -46,16 +53,8 @@ public class EntityManagerConnectorManager<T extends IEntityManagerConnector> ex
         closeSession();
     }
 
-
     private void closeSession() throws SessionCloseException {
-
-        try {
-            entityManager.close();
-            connector.closeEntitymanagerFactory();
-
-        } catch (IllegalStateException e) {
-            throw new SessionCloseException("session close failed!!");
-        }
-
+        entityManager.close();
+        connector.closeEntityManagerFactory();
     }
 }

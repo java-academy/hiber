@@ -1,6 +1,8 @@
 package ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.entity_manager;
 
 /**
+ * Concrete names of persistence units which are set in persistence.xml.
+ *
  * @author krzysztof.kramarz
  */
 public enum PersistenceUnitName {

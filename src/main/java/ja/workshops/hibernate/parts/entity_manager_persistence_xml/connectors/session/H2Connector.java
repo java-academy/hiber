@@ -6,6 +6,9 @@ import org.hibernate.cfg.Environment;
 import java.util.Properties;
 
 /**
+ * Basic settings to connect with H2 database.
+ * Need to change URL, USER and PASS properties.
+ *
  * @author krzysztof.niedzielski
  */
 public class H2Connector extends SessionConnector {

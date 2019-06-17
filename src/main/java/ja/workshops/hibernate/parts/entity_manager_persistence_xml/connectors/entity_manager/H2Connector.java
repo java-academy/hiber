@@ -2,7 +2,9 @@ package ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.e
 
 
 /**
- * @author krzysztof.niedzielski
+ * Connector to H2 database.
+ *
+ * @author krzysztof.kramarz
  */
 public class H2Connector extends EntityManagerConnector {
 

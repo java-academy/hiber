@@ -2,6 +2,7 @@ package ja.workshops.hibernate.parts.entity_manager_persistence_xml;
 
 
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.ConnectorManager;
+import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.EntityPersistanceException;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionCloseException;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionInitializationException;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.entity_manager.EntityManagerConnectorManager;
@@ -45,8 +46,8 @@ public class App {
         try {
 //            connectorManagerMySQL.commitAndClose();
 //            connectorManagerPostgreSQL.commitAndClose();
-//            connectorManagerH2.commitAndClose();
-        } catch (SessionInitializationException | SessionCloseException e) {
+            connectorManagerH2.commitAndClose();
+        } catch (SessionInitializationException | SessionCloseException | EntityPersistanceException e) {
             e.getMessage();
         }
     }
