@@ -1,0 +1,9 @@
+= Model creation
+
+You've got a connection to the database. The next step is to create the needed tables.
+In the picture, you can see how it should correspond to each other.
+Try to implement these classes with given relations in the package `ja.workshops.hibernate.parts.model_implementation.model`.
+
+image::ModelDiagram.jpg[Model Diagram]
+
+-> When you finish, you could see a solution in the package `ja.workshops.hibernate.parts.model`.
