@@ -1,4 +1,4 @@
-package ja.worshops.hibernate.parts;
+package ja.worshops.hibernate.parts.collections;
 
 import ja.workshops.hibernate.parts.model.Author;
 import ja.workshops.hibernate.parts.model.Book;
