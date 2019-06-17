@@ -1,12 +1,37 @@
-= O tym repozytorium
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+= Hibernate workshops
 
-Zebrane warsztaty ze Szpringa. Poproszę o DOSKONALE opisane i dobrej jakości gałązki. Dodajemy przez PRki, bym mógł zrecenzować. Znaczy, że:
+== Topics:
+* configuration of database connection
+* preparation of database models
+* CRUD methods
+* EntityManager and SessionFactory
+* 5 ways to build sql queries
+* logging sql queries
+* date and time
+* inheritance
+* primary keys and id generator types
+* lifecycle of Hibernate objects
+* Hibernate collections
+* loading objects (lazy / eager)
 
-1. Klikacie `fork`
-2. Tam, w Waszej kopii, wrzucacie zmiany jako odpowiednią gałązkę. Lub gałązki. Kim jestem by odmawiać gałązek.
-3. Robicie Prośbę o Reckę, ja robię reckę.
-4. Cykl z 3 się powtarza aż przejdziecie reckę... wtedy dodaję Was tu jako kontrybutora i wrzucacie kod wprost do tego repozytu i robicie recki razem ze mną. :-)
+== Requirements:
+* Java 11
+* Maven
+* Hibernate 5.4.3
+* Databases: H2, MySql, Postgres
 
-== Adoc?
-
-By poznać nieco AsciiDoctor w którym mają być readme, zerknij tu: https://github.com/LIttleAncientForestKami/pokaz-adoca
+=== Authors:
+* _Patryk Kucharski_
+* _Bartek Kupajski_
+* _Krzysztof Kramarz_
+* _Krzysiek Niedzielski_
+* _Ola Podorska_
+* _Kamil Rojek_
+* _Agnieszka Trzewik_
