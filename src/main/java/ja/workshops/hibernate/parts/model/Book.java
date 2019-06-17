@@ -18,7 +18,6 @@ public class Book {
     @Column(name = "title", updatable = false, nullable = false)
     private String title;
 
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             joinColumns = {@JoinColumn(name = "book_id")},

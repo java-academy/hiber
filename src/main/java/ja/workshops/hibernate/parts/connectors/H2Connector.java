@@ -12,7 +12,6 @@ import java.util.Properties;
  */
 public class H2Connector extends SessionConnector {
 
-
     private String ddlAuto;
 
     public H2Connector(String ddlAuto) {
