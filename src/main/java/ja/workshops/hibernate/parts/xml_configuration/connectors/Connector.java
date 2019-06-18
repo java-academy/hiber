@@ -1,6 +1,7 @@
 package ja.workshops.hibernate.parts.xml_configuration.connectors;
 
 import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
 
 /**
  * Manages connection and operations between Java and Database.
@@ -16,6 +17,6 @@ public class Connector {
      *
      */
     public static Session getSession(){
-        return null;
+        return new Configuration().configure().buildSessionFactory().getCurrentSession();
     }
 }
