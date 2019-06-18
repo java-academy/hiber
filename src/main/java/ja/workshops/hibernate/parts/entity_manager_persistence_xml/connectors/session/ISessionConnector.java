@@ -4,6 +4,7 @@ import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.IS
 import org.hibernate.Session;
 
 /**
+ * Interface for objects concerned with session managing.
  * @author Kamil Rojek
  */
 public interface ISessionConnector extends ISession {

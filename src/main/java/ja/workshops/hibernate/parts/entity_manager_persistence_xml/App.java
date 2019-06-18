@@ -1,12 +1,9 @@
 package ja.workshops.hibernate.parts.entity_manager_persistence_xml;
 
 
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.ConnectorManager;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.EntityPersistanceException;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionCloseException;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionInitializationException;
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.entity_manager.EntityManagerConnectorManager;
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.entity_manager.H2Connector;
 import ja.workshops.hibernate.parts.model.Author;
 import ja.workshops.hibernate.parts.model.Book;
 import ja.workshops.hibernate.parts.model.Genre;
@@ -14,8 +11,9 @@ import ja.workshops.hibernate.parts.model.Genre;
 import java.util.Set;
 
 /**
- * Odkomentuj te linijki,
- * dla których skonfigurowłeś Entity Managera
+ * Odkomentuj te linijki, które odnoszą się do
+ * danego, skonfigurowanego uprzednio przez Ciebie, Entity Managera,
+ * czyli te, które wykonają zapis, commit i zamknięcie połączenia
  *
  * @author Kamil Rojek
  */
@@ -24,7 +22,7 @@ public class App {
 //
 //        ConnectorManager<MysqlConnector> connectorManagerMySQL = EntityManagerConnectorManager.of(new MysqlConnector());
 //        ConnectorManager<PostgreSQLConnector> connectorManagerPostgreSQL = EntityManagerConnectorManager.of(new PostgreSQLConnector());
-        ConnectorManager<H2Connector> connectorManagerH2 = EntityManagerConnectorManager.of(new H2Connector());
+//        ConnectorManager<H2Connector> connectorManagerH2 = EntityManagerConnectorManager.of(new H2Connector());
 
         Author author = new Author("Julian", "Tuwim");
         Set<Author> authors = Set.of(new Author("Stanisław", "Lem"), new Author("Edmund", "Niziurski"));
@@ -46,9 +44,11 @@ public class App {
         try {
 //            connectorManagerMySQL.commitAndClose();
 //            connectorManagerPostgreSQL.commitAndClose();
-            connectorManagerH2.commitAndClose();
+//            connectorManagerH2.commitAndClose();
         } catch (SessionInitializationException | SessionCloseException | EntityPersistanceException e) {
-            e.getMessage();
+            System.err.println(e.getMessage());
         }
+
+
     }
 }

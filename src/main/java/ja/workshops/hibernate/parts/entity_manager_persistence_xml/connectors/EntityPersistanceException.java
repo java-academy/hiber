@@ -1,7 +1,7 @@
 package ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors;
 
 /**
- * Throws when entity cannot be persisted
+ * Thrown when entity couldn't be persisted.
  *
  * @author krzysztof.kramarz
  */

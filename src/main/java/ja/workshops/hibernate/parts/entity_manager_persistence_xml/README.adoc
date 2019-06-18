@@ -1,22 +1,33 @@
-# Entity Manager
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+
+=== Entity Manager
+
 
 Do tej pory do operacji na kontekście persystencji używałeś API hibernatowego interfejsu Session.
 Obecnie przyjrzymy się EntityManagerowi, który jest interfejsem standardu JPA.
 Zadanie polega na stworzeniu odpowiedniego pliku konfiguracyjnego xml. Plik ma umożliwić konfigurację EntityManagera
 dla połączenia się z jedną z baz danych (H2 lub PostgreSQL lub MySQL). Plik ma mieć zgodną z konwencją nazwę (jaką?).
 Plik musi byc umieszczony w katalogu META-INF.
-Zauważ, że istotne są nazwy poszczególnych ``persistence-unit``, które ustawiasz w tymże pliku konfiguracyjnym,
+Zauważ, że istotne są nazwy poszczególnych _persistence-unit_, które ustawiasz w tymże pliku konfiguracyjnym,
 identyfikowane są one potem po tych nazwach przy konstruowaniu EntityManagera metodą Persistence.createEntityManagerFactory("nazwa").".
-Jest cały szereg potrzebnych
-Dokumentacja opisująca potrzebne tagi xml-owe jest tutaj:
-https://docs.jboss.org/hibernate/stable/entitymanager/reference/en/html/configuration.html
 
-https://www.youtube.com/watch?v=uQrUs4ojU3k&list=PLU2dl_1LV_SQWZI2R_RSEeYm1tfueszOc&index=5
+Dokumentacja opisująca potrzebne tagi xml-owe jest tutaj:
+
+link:https://docs.jboss.org/hibernate/stable/entitymanager/reference/en/html/configuration.html[Konfiguracja]
+
+link:https://www.youtube.com/watch?v=uQrUs4ojU3k&list=PLU2dl_1LV_SQWZI2R_RSEeYm1tfueszOc&index=5[Artur Owczarek, kurs JPA]
 
 Dla ułatwienia poniższe tagi powinny być wykorzystane:
 
 
-
+====
  <persistence-unit name="" transaction-type="RESOURCE_LOCAL">
 
         <description>Moj opis</description>
@@ -32,22 +43,22 @@ Dla ułatwienia poniższe tagi powinny być wykorzystane:
             <property name="hibernate.hbm2ddl.auto" value="xxx"/>
         </properties>
     </persistence-unit>
-
+====
 
 Jak znaleźć, jaki provider nalezy wykorzystać? Wejdż to paczki hibernate-core-xxx.jar,
 znajdź pakiet org.hibernate.jpa i znajdź klasę HibernatePersistenceProvider. To ta klasa, wklej jej FQN.
 
-Jak znaleźc driver? Jest to klasa z paczki np. org.postgresql.Driver, wklej jej FQN do odpowiedniego tagu.
+Jak znaleźc driver? Jest to klasa z paczki np. _org.postgresql.Driver_, wklej jej FQN do odpowiedniego tagu.
 
 Jak znaleźc dialekt? Wejdż to paczki hibernate-core-xxx.jar,
 znajdź pakiet org.hibernate.dialect  i znajdź klasę dialektu własciwego dla bazy, z którą się łączysz, wklej jej FQN.
 
-Jaką ustawić wartość dla ``hibernate.hbm2ddl.auto``? Zobacz na prezentację Schemat_bazy_a_Hibernate.pdf, która jest w katalogu projektu.
+Jaką ustawić wartość dla _hibernate.hbm2ddl.auto_? Zobacz na prezentację Schemat_bazy_a_Hibernate.pdf, która jest w katalogu projektu.
 
 
 Gdy połączysz się z bazą danych, popatrz na API EntityManagera. Zauważ, że jest inne, niż API Session.
 Tutaj jest dokumentacja:
-https://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html
+link:https://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html[]
 
 
 

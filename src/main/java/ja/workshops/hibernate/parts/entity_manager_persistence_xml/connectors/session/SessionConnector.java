@@ -52,7 +52,7 @@ public abstract class SessionConnector implements ISessionConnector {
     /**
      * Adds entities to project configuration.
      *
-     * @param configuration
+     * @param configuration holds configuration
      */
     private void addEntities(Configuration configuration) {
         configuration.addAnnotatedClass(Book.class);
