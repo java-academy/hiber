@@ -1,4 +1,4 @@
-package ja.worshops.hibernate.parts.collections;
+package ja.workshops.hibernate.parts.collections;
 
 import ja.workshops.hibernate.parts.connectors.H2Connector;
 import ja.workshops.hibernate.parts.connectors.SessionConnector;
