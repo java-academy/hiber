@@ -7,7 +7,11 @@ ifdef::env-github[]
 endif::[]
 = Hibernate workshops
 
-== Topics:
+
+CAUTION: Due to workshop nature, run this without tests at first. Tests are to use AFTER you fill in certain places with your code. :-) To do this: `mvn package -DskipTests`
+
+== Topics touched
+
 * configuration of database connection
 * preparation of database models
 * CRUD methods
@@ -27,7 +31,10 @@ endif::[]
 * Hibernate 5.4.3
 * Databases: H2, MySql, Postgres
 
-=== Authors:
+[IMPORTANT]
+.Authors
+====
+
 * _Patryk Kucharski_
 * _Bartek Kupajski_
 * _Krzysztof Kramarz_
@@ -35,3 +42,5 @@ endif::[]
 * _Ola Podorska_
 * _Kamil Rojek_
 * _Agnieszka Trzewik_
+
+====
