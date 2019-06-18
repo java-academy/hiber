@@ -1,6 +1,8 @@
 package ja.workshops.hibernate.parts.date_time_mapping.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
@@ -23,20 +25,37 @@ public class Author {
     @ManyToMany(mappedBy = "authors")
     private List<Book> books;
 
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
 
-    //TODO: Implement date of birth:
-
-
-    //TODO: Implement date of addition:
-
+    @Column(name = "date_of_addition")
+    private OffsetDateTime dateOfAddition;
 
     public Author() {
 
     }
 
-    public Author(String name, String surname) {
+    public Author(String name, String surname, LocalDate dateOfBirth, OffsetDateTime dateOfAddition) {
         this.name = name;
         this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfAddition = dateOfAddition;
+    }
+
+    public OffsetDateTime getDateOfAddition() {
+        return dateOfAddition;
+    }
+
+    public void setDateOfAddition(OffsetDateTime dateOfAddition) {
+        this.dateOfAddition = dateOfAddition;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setId(Long id) {
