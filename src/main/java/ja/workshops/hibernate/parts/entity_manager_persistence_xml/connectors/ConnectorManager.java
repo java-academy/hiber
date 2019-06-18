@@ -62,8 +62,8 @@ public abstract class ConnectorManager<T extends ISession> {
      *
      * @throws SessionInitializationException- thrown when error occurs during session initialization.
      * @throws SessionCloseException-          thrown when error occurs during closing session.
-     * @throws EntityPersistanceException-     thrown when error occurs during entity persistence.
+     * @throws EntityPersistenceException -     thrown when error occurs during entity persistence.
      */
-    public abstract void commitAndClose() throws SessionInitializationException, SessionCloseException, EntityPersistanceException;
+    public abstract void commitAndClose() throws SessionInitializationException, SessionCloseException, EntityPersistenceException;
 
 }

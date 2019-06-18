@@ -1,9 +1,6 @@
 package ja.workshops.hibernate.parts.entity_manager_persistence_xml;
 
 
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.EntityPersistanceException;
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionCloseException;
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionInitializationException;
 import ja.workshops.hibernate.parts.model.Author;
 import ja.workshops.hibernate.parts.model.Book;
 import ja.workshops.hibernate.parts.model.Genre;
@@ -13,7 +10,7 @@ import java.util.Set;
 /**
  * Wpierw zerknij na //FIXME na dole pliku (nad catch)
  * Powinieneś wtedy dostać błąd kompilacji. Zauważ do czego się on odnosi.
- *
+ * <p>
  * Odkomentuj te linijki, które odnoszą się do danego,
  * skonfigurowanego uprzednio przez Ciebie, Entity Managera,
  * czyli te, które wykonają zapis, commit i zamknięcie połączenia.
@@ -50,8 +47,8 @@ public class App {
 //            connectorManagerH2.commitAndClose();
 
 // FIXME: zastąp catch Exception e multicatchem - powinieneś mieć błąd kompilacji
-//        } catch (SessionInitializationException | SessionCloseException | EntityPersistanceException e) {
-        } catch (Exception e ) {
+//        } catch (SessionInitializationException | SessionCloseException | EntityPersistenceException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 
