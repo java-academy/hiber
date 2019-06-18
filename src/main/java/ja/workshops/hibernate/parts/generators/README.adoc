@@ -30,6 +30,9 @@ nazwa generatora - "moja_sekwencja",
 nazwa sekwencji - superSekwencja,
 początkowa wartość dla generatora = 10,
 rozmiar rezerowany dla pojedynczej sesji = 5.
+
+.. Dla encji BookstoreBook stwórz dowolny generator sekwencji
+
 Wykonaj program i zaobserwuj, co się zmieniło w bazie danych.
 Zauważ, jak zostały użyte przez bazę danych te wartości, które podalismy w opisie generatora.
 
