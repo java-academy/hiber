@@ -25,7 +25,7 @@ public class CollectionsTest {
     private Book book;
 
     @BeforeMethod
-    public void initialize(){
+    public void initialize() {
         Author author1 = new Author("Anna", "Kowalska");
         Author author2 = new Author("Maria", "Nowak");
         Set<Author> authors = new HashSet<>();
@@ -35,7 +35,7 @@ public class CollectionsTest {
     }
 
     @Test
-    public void collectionIsOfTypeHashSet(){
+    public void collectionIsOfTypeHashSet() {
 
         //Arrange
 
@@ -46,7 +46,7 @@ public class CollectionsTest {
     }
 
     @Test
-    public void persistingHashSetGivesHibernatePersistentSet(){
+    public void persistingHashSetGivesHibernatePersistentSet() {
 
         //Arrange
         SessionConnector sessionConnector = new H2Connector();
