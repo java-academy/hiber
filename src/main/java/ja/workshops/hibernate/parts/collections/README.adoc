@@ -1,9 +1,6 @@
 = Existence of Hibernate collections
 
-. Prepare H2 connection (configure Connector).
-. Go to CollectionsTest class:
-.. Fill the tests methods in CollectionsTest class to prove that a set of authors in the Book is a java.util.HashSet
-   and after persistence is an org.hibernate.collection.internal.PersistentSet (use Author and Book classes).
+IMPORTANT: To run tests, you need to set Connectors.
 
 == Documentation
 
