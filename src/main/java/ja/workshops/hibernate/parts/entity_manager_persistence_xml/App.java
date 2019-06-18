@@ -11,8 +11,8 @@ import ja.workshops.hibernate.parts.model.Genre;
 import java.util.Set;
 
 /**
- * Odkomentuj te linijki, które odnoszą się do
- * danego, skonfigurowanego uprzednio przez Ciebie, Entity Managera,
+ * Odkomentuj te linijki, które odnoszą się do danego,
+ * skonfigurowanego uprzednio przez Ciebie, Entity Managera,
  * czyli te, które wykonają zapis, commit i zamknięcie połączenia
  *
  * @author Kamil Rojek
