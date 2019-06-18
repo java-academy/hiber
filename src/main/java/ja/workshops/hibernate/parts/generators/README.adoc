@@ -1,7 +1,14 @@
 == Identyfikatory, klucze główne, sekwencje
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 W tym zadaniu będziemy tworzyli generatory wartości identyfikatorów, w uproszczeniu możemy używać zamiennie terminu- kluczy głównych.
-Zapoznaj się z prezentacją ``Identyfikatory_klucze_glowne_sekwencje.pdf``, znajdująca się w katalogu projektu.
+Zapoznaj się z prezentacją _Identyfikatory_klucze_glowne_sekwencje.pdf_ znajdująca się w katalogu projektu.
 
 Następnie stwórz następujące generatory:
 
@@ -23,10 +30,6 @@ nazwa generatora - "moja_sekwencja",
 nazwa sekwencji - superSekwencja,
 początkowa wartość dla generatora = 10,
 rozmiar rezerowany dla pojedynczej sesji = 5.
-
-.. Dla encji BookstoreBook stwórz dowolny generator sekwencji
-
-
 Wykonaj program i zaobserwuj, co się zmieniło w bazie danych.
 Zauważ, jak zostały użyte przez bazę danych te wartości, które podalismy w opisie generatora.
 
