@@ -2,7 +2,7 @@ package ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.e
 
 
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.ConnectorManager;
-import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.EntityPersistanceException;
+import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.EntityPersistenceException;
 import ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors.SessionCloseException;
 
 import javax.persistence.EntityExistsException;
@@ -38,14 +38,14 @@ public class EntityManagerConnectorManager<T extends IEntityManagerConnector> ex
     }
 
     @Override
-    public void commitAndClose() throws EntityPersistanceException, SessionCloseException {
+    public void commitAndClose() throws EntityPersistenceException, SessionCloseException {
         transaction.begin();
 
         for (Object r : records) {
             try {
                 entityManager.persist(r);
             } catch (EntityExistsException | IllegalArgumentException | TransactionRequiredException e) {
-                throw new EntityPersistanceException(" Adding record failed -> " + r);
+                throw new EntityPersistenceException(" Adding record failed -> " + r);
             }
         }
 

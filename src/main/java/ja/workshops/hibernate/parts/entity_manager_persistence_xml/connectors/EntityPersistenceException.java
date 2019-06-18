@@ -5,7 +5,7 @@ package ja.workshops.hibernate.parts.entity_manager_persistence_xml.connectors;
  *
  * @author krzysztof.kramarz
  */
-public class EntityPersistanceException extends Exception {
-    public EntityPersistanceException(String s) {
+public class EntityPersistenceException extends Exception {
+    public EntityPersistenceException(String s) {
     }
 }

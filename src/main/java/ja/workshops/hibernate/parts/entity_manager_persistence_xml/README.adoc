@@ -33,6 +33,10 @@ Dla ułatwienia poniższe tagi powinny być wykorzystane:
         <description>Moj opis</description>
 
         <provider>scieżka do klasy implemetującej PersistenceProvider</provider>
+
+       <class>nie trzeba wymieniać klas, chyba, że EntityMenager będzie miał wątpliwości</class>
+       <exclude-unlisted-classes>true lub false</exclude-unlisted-classes>
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="xxx"/>
             <property name="javax.persistence.jdbc.user" value="xxx"/>
