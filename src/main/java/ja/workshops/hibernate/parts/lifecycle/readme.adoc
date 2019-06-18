@@ -1,0 +1,29 @@
+= Hibernate object lifecycle
+
+Hibernate objects can live in 4 states:
+
+* transient
+* persistent
+* detached
+* removed
+
+Transient objects :: not managed by Hibernate at all.
+
+Persistent objects :: exist in the database and Hibernate can manage them.
+
+Detached object :: has a representation in the database, but any changes on the object will not be reflected in the database and vice-versa.
+
+Removed object :: state occurs when object is deleted from both the session and the database.
+
+== Methods to transfer between states
+
+There are few methods to manage lifecycle of an object.
+
+* transient -> persistent: `save()`, `saveOrUpdate()`
+* persistent -> detached: `evict()`, `clear()`, `close()`
+* detached -> persistent: `update()`, `merge()`, `saveOrUpdate()`
+* persistent -> removed: `delete()`
+
+Go to App class to see hibernate object lifecycle demonstration.
+
+image::https://www.baeldung.com/wp-content/uploads/2016/07/2016-07-11_13-38-11-1024x551.png[]

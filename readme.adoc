@@ -1,46 +1,24 @@
-ifdef::env-github[]
-:tip-caption: :bulb:
-:note-caption: :information_source:
-:important-caption: :heavy_exclamation_mark:
-:caution-caption: :fire:
-:warning-caption: :warning:
-endif::[]
-= Hibernate workshops
+= Hibernate object lifecycle
 
+Hibernate objects can live in 4 states:
 
-CAUTION: Due to workshop nature, run this without tests at first. Tests are to use AFTER you fill in certain places with your code. :-) To do this: `mvn package -DskipTests`
+* transient
+* persistent
+* detached
+* removed
 
-== Topics touched
+Transient objects are not managed by Hibernate at all.
+Persistent object exist in the database and Hibernate can manage it.
+Detached object has a representation in the database, but any changes on the object will not be reflected in the database, and vice-versa.
+Removed state occurs when object is deleted from session and database.
 
-* configuration of database connection
-* preparation of database models
-* CRUD methods
-* EntityManager and SessionFactory
-* 5 ways to build sql queries
-* logging sql queries
-* date and time
-* inheritance
-* primary keys and id generator types
-* lifecycle of Hibernate objects
-* Hibernate collections
-* loading objects (lazy / eager)
+There are few methods to manage lifecycle of an object.
 
-== Requirements:
-* Java 11
-* Maven
-* Hibernate 5.4.3
-* Databases: H2, MySql, Postgres
+* transient -> persistent: `save()`, `saveOrUpdate()`
+* persistent -> detached: `evict()`, `clear()`, `close()`
+* detached -> persistent: `update()`, `merge()`, `saveOrUpdate()`
+* persistent -> removed: `delete()`
 
-[IMPORTANT]
-.Authors
-====
+Go to App class to see hibernate object lifecycle.
 
-* _Patryk Kucharski_
-* _Bartek Kupajski_
-* _Krzysztof Kramarz_
-* _Krzysiek Niedzielski_
-* _Ola Podorska_
-* _Kamil Rojek_
-* _Agnieszka Trzewik_
-
-====
+image::https://www.baeldung.com/wp-content/uploads/2016/07/2016-07-11_13-38-11-1024x551.png[]
