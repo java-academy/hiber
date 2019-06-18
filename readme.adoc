@@ -7,6 +7,8 @@ ifdef::env-github[]
 endif::[]
 = Hibernate workshops
 
+IMPORTANT: **Szczerze polecam wpierw spróbować ruszyć zadania samemu.** I heartily recommend - try solving the tasks on your own first.
+
 CAUTION: Due to workshop nature, run this without tests at first. Tests are to use AFTER you fill in certain places with your code. :-) To do this: `mvn package -DskipTests`
  
 == Topics touched
