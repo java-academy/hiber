@@ -7,7 +7,12 @@ ifdef::env-github[]
 endif::[]
 = Hibernate workshops
 
-== Topics:
+IMPORTANT: **Szczerze polecam wpierw spróbować ruszyć zadania samemu.** I heartily recommend - try solving the tasks on your own first.
+
+CAUTION: Due to workshop nature, run this without tests at first. Tests are to use AFTER you fill in certain places with your code. :-) To do this: `mvn package -DskipTests`
+ 
+== Topics touched
+
 * configuration of database connection
 * preparation of database models
 * CRUD methods
@@ -21,13 +26,17 @@ endif::[]
 * Hibernate collections
 * loading objects (lazy / eager)
 
-== Requirements:
+== Requirements
+
 * Java 11
 * Maven
 * Hibernate 5.4.3
 * Databases: H2, MySql, Postgres
 
-=== Authors:
+[IMPORTANT]
+.Authors
+====
+
 * _Patryk Kucharski_
 * _Bartek Kupajski_
 * _Krzysztof Kramarz_
@@ -35,3 +44,5 @@ endif::[]
 * _Ola Podorska_
 * _Kamil Rojek_
 * _Agnieszka Trzewik_
+
+====
