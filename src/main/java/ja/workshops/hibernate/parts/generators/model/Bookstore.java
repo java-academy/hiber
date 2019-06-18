@@ -11,6 +11,8 @@ import java.util.Set;
 public class Bookstore {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "tabela_generator_wartosci")
+    @TableGenerator(name = "tabela_generator_wartosci", initialValue = 75, allocationSize = 25, pkColumnValue = "id_tabela_bookstore",  pkColumnName = "tabele", valueColumnName = "wartosc_id")
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 

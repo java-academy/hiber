@@ -12,6 +12,8 @@ import java.util.Set;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mojaSekwencja")
+    @SequenceGenerator(name = "mojaSekwencja", initialValue = 10, allocationSize = 5, sequenceName = "superSekwencja")
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 

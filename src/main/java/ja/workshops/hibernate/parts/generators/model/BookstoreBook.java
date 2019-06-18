@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class BookstoreBook {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
