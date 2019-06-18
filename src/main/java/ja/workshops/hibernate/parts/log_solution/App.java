@@ -12,6 +12,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Implementation of solution for log task.
+ * Main goal was to create log4j2.xml file with config of log4j2.xml
+ * which you can find in hiber/src/main/resources/log4j2.xml
+ *
  * @author krzysztof.niedzielski
  */
 public class App {
