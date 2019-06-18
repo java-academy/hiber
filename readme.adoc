@@ -1,10 +1,10 @@
-+ifdef::env-github[]
-+:tip-caption: :bulb:
-+:note-caption: :information_source:
-+:important-caption: :heavy_exclamation_mark:
-+:caution-caption: :fire:
-+:warning-caption: :warning:
-+endif::[]
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 = Hibernate workshops
 
 CAUTION: Due to workshop nature, run this without tests at first. Tests are to use AFTER you fill in certain places with your code. :-) To do this: `mvn package -DskipTests`
