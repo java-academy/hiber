@@ -11,9 +11,12 @@ import ja.workshops.hibernate.parts.model.Genre;
 import java.util.Set;
 
 /**
+ * Wpierw zerknij na //FIXME na dole pliku (nad catch)
+ * Powinieneś wtedy dostać błąd kompilacji. Zauważ do czego się on odnosi.
+ *
  * Odkomentuj te linijki, które odnoszą się do danego,
  * skonfigurowanego uprzednio przez Ciebie, Entity Managera,
- * czyli te, które wykonają zapis, commit i zamknięcie połączenia
+ * czyli te, które wykonają zapis, commit i zamknięcie połączenia.
  *
  * @author Kamil Rojek
  */
@@ -45,7 +48,10 @@ public class App {
 //            connectorManagerMySQL.commitAndClose();
 //            connectorManagerPostgreSQL.commitAndClose();
 //            connectorManagerH2.commitAndClose();
-        } catch (SessionInitializationException | SessionCloseException | EntityPersistanceException e) {
+
+// FIXME: zastąp catch Exception e multicatchem - powinieneś mieć błąd kompilacji
+//        } catch (SessionInitializationException | SessionCloseException | EntityPersistanceException e) {
+        } catch (Exception e ) {
             System.err.println(e.getMessage());
         }
 
