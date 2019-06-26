@@ -1,9 +1,6 @@
 package ja.workshops.hibernate.parts.generators.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -13,6 +10,8 @@ import java.util.List;
 public class Author {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "generator_wartosci")
+    @TableGenerator(name = "generator_wartosci", table = "tabela_generator_wartosci", initialValue = 50, allocationSize = 100, pkColumnValue = "id_tabela_autor", pkColumnName = "tabele", valueColumnName = "wartosc_id")
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
