@@ -14,12 +14,13 @@ Następnie stwórz następujące generatory:
 
 .. Stwórz generator wartości typu TABLE, użyj go dla encji Autor i Bookstore.
 Skonfiguruj go następująco:
-nazwa tabeli z generatorem: "tabela_generator_wartosci",
-początkowa wartość dla generatora = 50,
-zakres wartości alokowanych dla pojedynczej sesji = 100,
-nazwa kolumny, która wskazuje na dany generator: "tabele",
-nazwa generatora: "id_tabela_autor",
-nazwa kolumny z wartościami dla generatora: "wartosc_id".
+nazwa tabeli z generatorem (table): "tabela_generator_wartosci",
+nazwa generatora (name): "generator_wartosci"
+początkowa wartość dla generatora (initialValue) = 50,
+zakres wartości alokowanych dla pojedynczej sesji (allocationSize) = 100,
+nazwa kolumny, która wskazuje na dany generator (pkColumnName): "tabele",
+nazwa, po jakiej identyfikowany jest generator w tabeli z generatorami (pkColumnValue) odpowiednio: "id_tabela_autor" / "id_tabela_bookstore",
+nazwa kolumny z wartościami dla generatora (valueColumnName): "wartosc_id".
 Wykonaj program i zaobserwuj, co się zmieniło w bazie danych.
 Zauważ, jak zostały użyte przez bazę danych te wartości, które podalismy w opisie generatora.
 
@@ -33,6 +34,6 @@ rozmiar rezerowany dla pojedynczej sesji = 5.
 
 .. Dla encji BookstoreBook stwórz dowolny generator sekwencji
 
-Wykonaj program i zaobserwuj, co się zmieniło w bazie danych.
+Zmień importy encji na własciwe własciwe encje z naszego pakietu (zamiana w ja.workshops.hibernate.parts.connectors.SessionConnector). Wykonaj program i zaobserwuj, co się zmieniło w bazie danych.
 Zauważ, jak zostały użyte przez bazę danych te wartości, które podalismy w opisie generatora.
 
