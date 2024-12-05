@@ -20,7 +20,7 @@
         <version.mysql>8.0.28</version.mysql>
         <version.hibernate>5.4.24.Final</version.hibernate>
         <version.postgresql>9.1-901-1.jdbc4</version.postgresql>
-        <version.h2database>2.1.210</version.h2database>
+        <version.h2database>2.2.220</version.h2database>
         <version.testng>7.5.1</version.testng>
     </properties>
 
